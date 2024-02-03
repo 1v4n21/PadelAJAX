@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../images/fondo.jpg') no-repeat;
+    height: 100vh;
+    font-family: sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden
+}
+
+.card-img-left {
+    width: 45%;
+    background: scroll center url('../images/pelota.jpg');
+    background-size: cover;
+}
+
+.btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+}
