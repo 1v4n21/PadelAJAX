@@ -14,7 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8y+uEzrPLnFkZ8ulnM/Aaw2NDBXvzWlF7sJXe7O06Q3TMKXf6N9S5aIKzGx" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Padel-Registro</title>
-    
+
+    <!-- Link jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <!-- CSS -->
     <style>
         .error {
@@ -37,13 +40,22 @@
 
 <body>
     <?= imprimirMensaje() ?>
+
+    <!--JavaScript-->
+    <script>
+        // Muestra el mensaje de error al cargar la página
+        $(document).ready(function() {
+            $(".error").fadeIn().delay(5000).fadeOut();
+        });
+    </script>
+
     <br><br><br>
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-9 mx-auto">
                 <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
                     <div class="card-img-left d-none d-md-flex">
-                        
+
                     </div>
                     <div class="card-body p-4 p-sm-5">
                         <h5 class="card-title text-center mb-5 fw-light fs-5">REGISTRO</h5>
@@ -51,24 +63,24 @@
                         <form action="index.php?accion=registrar" method="post">
 
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus>
+                                <input name="nombre" type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus>
                                 <label for="floatingInputUsername">Nombre</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" required>
+                                <input name="email" type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" required>
                                 <label for="floatingInputEmail">Correo Electrónico</label>
                             </div>
 
                             <hr>
 
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                                 <label for="floatingPassword">Contraseña</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password" required>
+                                <input name="password" type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password" required>
                                 <label for="floatingPasswordConfirm">Confirma Contraseña</label>
                             </div>
 
