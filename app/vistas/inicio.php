@@ -7,12 +7,11 @@
     <!-- favicon -->
     <link rel="icon" href="web/images/favicon.jpg" type="image/x-icon">
     <link rel="shortcut icon" href="web/images/favicon.jpg" type="image/x-icon">
-    <!-- css -->
-    <link rel="stylesheet" href="web/css/login.css">
+
     <!-- bootstrap y font-awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>ManchaPadel-Login</title>
+    <title>ManchaPadel-Inicio</title>
 
     <!-- Link jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -51,7 +50,8 @@
     </style>
 </head>
 
-<body>
+<body class="bg-light">
+
     <!-- Mensaje de error -->
     <?php imprimirMensaje(); ?>
 
@@ -73,45 +73,24 @@
         });
     </script>
 
-    <br><br><br>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-xl-9 mx-auto">
-                <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
-                    <div class="card-img-left d-none d-md-flex">
-
-                    </div>
-                    <div class="card-body p-4 p-sm-5">
-                        <h5 class="card-title text-center mb-5 fw-light fs-5">LOGIN</h5>
-                        <!-- Formulario -->
-                        <form action="index.php?accion=login" method="post">
-
-                            <div class="form-floating mb-3">
-                                <input name="email" type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com" required>
-                                <label for="floatingInputEmail">Correo Electrónico</label>
-                            </div>
-
-                            <hr>
-
-                            <div class="form-floating mb-3">
-                                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-                                <label for="floatingPassword">Contraseña</label>
-                            </div>
-
-                            <div class="d-grid mb-2">
-                                <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">LOGIN</button>
-                            </div>
-                            <!-- Link -->
-                            <a class="d-block text-center mt-2 small" href="index.php?accion=registrar">No tienes cuenta? Registrate</a>
-
-                            <hr class="my-4">
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="container-fluid text-center bg-success py-3">
+        <h1 class="text-light">Mancha Padel</h1>
     </div>
+
+    <div class="container mt-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="text-success">¡Hola, <?= Sesion::getUsuario()->getNombre() ?>!</h4>
+            <a href="index.php?accion=logout" class="btn btn-danger">Cerrar Sesión</a>
+        </div>
+
+        <!-- Contenido de la página aquí -->
+
+    </div>
+
+    <!-- Scripts de Bootstrap (jQuery y Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8y+uEzrPLnFkZ8ulnM/Aaw2NDBXvzWlF7sJXe7O06Q3TMKXf6N9S5aIKzGx" crossorigin="anonymous"></script>
 </body>
+
 
 </html>

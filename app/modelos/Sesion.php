@@ -1,4 +1,5 @@
 <?php
+
 class Sesion
 {
     static public function getUsuario(): Usuario|false
@@ -13,11 +14,23 @@ class Sesion
     static public function iniciarSesion($usuario)
     {
         $_SESSION['usuario'] = serialize($usuario);
+        self::crearCookie($usuario->getId());
     }
 
     static public function cerrarSesion()
     {
         unset($_SESSION['usuario']);
+        self::eliminarCookie();
+    }
+
+    private static function crearCookie($id)
+    {
+        setcookie('sid', $id, time() + 7 * 60 * 60 * 24, '/');
+    }
+
+    private static function eliminarCookie()
+    {
+        setcookie('sid', '', 0, '/');
     }
 
     static public function existeSesion()

@@ -11,9 +11,8 @@
     <link rel="stylesheet" href="web/css/login.css">
     <!-- bootstrap y font-awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8y+uEzrPLnFkZ8ulnM/Aaw2NDBXvzWlF7sJXe7O06Q3TMKXf6N9S5aIKzGx" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Padel-Registro</title>
+    <title>ManchaPadel-Registro</title>
 
     <!-- Link jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -29,7 +28,7 @@
             color: #721c24;
             position: fixed;
             top: 10px;
-            left: 50%;
+            left: 52%;
             transform: translateX(-50%);
             z-index: 9999;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -39,7 +38,8 @@
 </head>
 
 <body>
-    <?= imprimirMensaje() ?>
+    <!-- Mensaje de error -->
+    <?php imprimirMensaje(); ?>
 
     <!--JavaScript-->
     <script>
@@ -80,7 +80,7 @@
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input name="password" type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password" required>
+                                <input name="password2" type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password" required>
                                 <label for="floatingPasswordConfirm">Confirma Contraseña</label>
                             </div>
 

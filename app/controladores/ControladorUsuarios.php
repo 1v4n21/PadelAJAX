@@ -4,6 +4,14 @@ class ControladorUsuarios
 {
     public function login()
     {
+
+        if (Sesion::existeSesion()) {
+            // Si ya ha iniciado sesión, redirige a la página de inicio
+            header('location: index.php?accion=inicio');
+            guardarMensaje("No puedes acceder aqui si ya has iniciado sesion");
+            die();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Creamos la conexión utilizando la clase que hemos creado
             $connexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
@@ -20,12 +28,9 @@ class ControladorUsuarios
                     //email y password correctos. Inciamos sesión
                     Sesion::iniciarSesion($usuario);
 
-                    //Creamos la cookie para que nos recuerde 1 semana
-                    setcookie('id', $usuario->getid(), time() + 24 * 60 * 60, '/');
-
                     //Redirigimos a inicio
-                    header('location: index.php?accion=inicio');
-                    guardarMensajeC("Inicio de sesion con éxito");
+                    header('location: index.php');
+                    guardarMensajeC("Inicio de sesión con éxito");
                     die();
                 }
             }
@@ -39,6 +44,14 @@ class ControladorUsuarios
 
     public function registrar()
     {
+
+        if (Sesion::existeSesion()) {
+            // Si ya ha iniciado sesión, redirige a la página de inicio
+            header('location: index.php?accion=inicio');
+            guardarMensaje("No puedes acceder aqui si ya has iniciado sesion");
+            die();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             //Limpiamos los datos
@@ -91,9 +104,7 @@ class ControladorUsuarios
                     // Iniciar sesión con el nuevo usuario
                     Sesion::iniciarSesion($usuario);
 
-                    setcookie('id', $usuario->getId(), time() + 7 * 60 * 60 * 24, '/');
-
-                    header("location: index.php?accion=inicio");
+                    header("location: index.php");
                     guardarMensajeC("Registro realizado con éxito");
                     die();
                 } else {
@@ -105,11 +116,10 @@ class ControladorUsuarios
         require 'app/vistas/registro.php';
     }
 
-
     public function logout()
     {
         Sesion::cerrarSesion();
-        setcookie('id', '', 0, '/');
+        guardarMensajeC("Sesion cerrada con éxito");
         header('location: index.php');
     }
 }

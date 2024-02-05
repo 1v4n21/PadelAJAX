@@ -1,5 +1,8 @@
 <?php
 
+//Uso de variables de sesión
+session_start();
+
 //Imports
 require_once 'app/config/config.php';
 require_once 'app/modelos/ConexionDB.php';
@@ -14,9 +17,6 @@ require_once 'app/utils/funciones.php';
 require_once 'app/controladores/ControladorReservas.php';
 require_once 'app/controladores/ControladorTramos.php';
 require_once 'app/controladores/ControladorUsuarios.php';
-
-//Uso de variables de sesión
-session_start();
 
 //Mapa de enrutamiento
 $mapa = array(
@@ -35,33 +35,45 @@ $mapa = array(
         'metodo' => 'registrar',
         'privada' => false
     ),
+    'inicio' => array(
+        'controlador' => 'ControladorTramos',
+        'metodo' => 'inicio',
+        'privada' => true
+    ),
 );
 
-//Parseo de la ruta
-if (isset($_GET['accion'])) { //Compruebo si me han pasado una acción concreta, sino pongo la accción por defecto login
-    if (isset($mapa[$_GET['accion']])) {  //Compruebo si la accción existe en el mapa, sino muestro error 404
+
+// Parseo de la ruta
+if (isset($_GET['accion'])) {
+    if (isset($mapa[$_GET['accion']])) {
         $accion = $_GET['accion'];
     } else {
-        //La acción no existe
+        // La acción no existe
         header('Status: 404 Not found');
         echo 'Página no encontrada';
         die();
     }
+} elseif (Sesion::existeSesion()) {
+    $accion = 'inicio';   // Acción por defecto
 } else {
-    $accion = 'login';   //Acción por defecto
+    $accion = 'login';
 }
+
 
 //Si existe la cookie y no ha iniciado sesión, le iniciamos sesión de forma automática
 //if( !isset($_SESSION['email']) && isset($_COOKIE['id'])){
-if (!Sesion::existeSesion() && isset($_COOKIE['id'])) {
+if (!Sesion::existeSesion() && isset($_COOKIE['sid'])) {
     //Conectamos con la bD
     $connexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
     $conn = $connexionDB->getConnexion();
 
-    //Nos conectamos para obtener el id y la foto del usuario
+    //Nos conectamos para obtener el id
     $usuariosDAO = new UsuariosDAO($conn);
-    if ($usuario = $usuariosDAO->getByid($_COOKIE['id'])) {
+    if ($usuario = $usuariosDAO->getById($_COOKIE['sid'])) {
         Sesion::iniciarSesion($usuario);
+        header('location: index.php');
+        guardarMensajeC("Bienvenido " . $usuario->getNombre());
+        die();
     }
 }
 
