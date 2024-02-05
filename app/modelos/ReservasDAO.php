@@ -112,4 +112,23 @@ class ReservasDAO
             return false;
         }
     }
+
+    public function getByFecha($fecha): array
+    {
+        if (!$stmt = $this->conn->prepare("SELECT * FROM reservas WHERE fecha = ?")) {
+            echo "Error en la SQL: " . $this->conn->error;
+        }
+
+        $stmt->bind_param('s', $fecha);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $array_reservas = array();
+
+        while ($reserva = $result->fetch_object(Reserva::class)) {
+            $array_reservas[] = $reserva;
+        }
+
+        return $array_reservas;
+    }
 }

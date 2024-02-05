@@ -26,9 +26,9 @@ class UsuariosDAO
         }
     }
 
-    public function getById($id): ?Usuario
+    public function getById($id)
     {
-        if (!$stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE id = ?")) {
+        if (!$stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE idUsuario = ?")) {
             echo "Error en la SQL: " . $this->conn->error;
         }
 

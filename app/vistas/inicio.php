@@ -132,40 +132,16 @@
 
         <br>
         <hr>
+        <br>
 
-        <div class="container mt-5 mb-5">
-            <table class="table table-bordered table-striped mx-auto">
-                <thead>
-                    <tr>
-                        <th colspan="2" class="text-center">Tramos</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $contador = 0;
-
-                    foreach ($tramos as $tramo) :
-                        // Abre una nueva fila en cada segundo tramo
-                        if ($contador % 2 === 0) :
-                            echo '</tr><tr>';
-                        endif;
-                    ?>
-                        <td class="text-center">
-                            <!-- Aquí colocas el contenido de tu celda -->
-                            <p>Tramo <?= $contador + 1 ?>: <?= $tramo->getHora() ?></p>
-                        </td>
-                    <?php $contador++;
-                    endforeach; ?>
-                </tbody>
-            </table>
+        <div class="container">
+            <table id="tablaTramos" class="table table-bordered table-striped mx-auto"></table>
         </div>
-
     </div>
 
     <!-- Scripts de Bootstrap (jQuery y Popper.js) -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="app/js/js.js" type="text/javascript"></script>
 </body>
-
-
 
 </html>

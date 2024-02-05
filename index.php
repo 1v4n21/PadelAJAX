@@ -40,6 +40,21 @@ $mapa = array(
         'metodo' => 'inicio',
         'privada' => true
     ),
+    'tramos' => array(
+        'controlador' => 'ControladorTramos',
+        'metodo' => 'tramos',
+        'privada' => true
+    ),
+    'obtenerReservas' => array(
+        'controlador' => 'ControladorReservas',
+        'metodo' => 'obtenerReservas',
+        'privada' => true
+    ),
+    'obtenerUsuario' => array(
+        'controlador' => 'ControladorUsuarios',
+        'metodo' => 'obtenerUsuario',
+        'privada' => true
+    ),
 );
 
 

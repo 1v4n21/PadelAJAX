@@ -122,4 +122,10 @@ class ControladorUsuarios
         guardarMensajeC("Sesion cerrada con éxito");
         header('location: index.php');
     }
+
+    public function obtenerUsuario()
+    {
+        $idUsuario = Sesion::getUsuario()->getId();
+        print json_encode(['idUsuario'=>$idUsuario]);
+    }
 }
