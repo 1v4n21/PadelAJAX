@@ -20,11 +20,6 @@ session_start();
 
 //Mapa de enrutamiento
 $mapa = array(
-    'inicio' => array(
-        "controlador" => 'ControladorUsuarios',
-        'metodo' => 'inicio',
-        'privada' => false
-    ),
     'login' => array(
         'controlador' => 'ControladorUsuarios',
         'metodo' => 'login',
@@ -53,14 +48,14 @@ if (isset($_GET['accion'])) { //Compruebo si me han pasado una acción concreta,
         die();
     }
 } else {
-    $accion = 'inicio';   //Acción por defecto
+    $accion = 'login';   //Acción por defecto
 }
 
 //Si existe la cookie y no ha iniciado sesión, le iniciamos sesión de forma automática
 //if( !isset($_SESSION['email']) && isset($_COOKIE['id'])){
 if (!Sesion::existeSesion() && isset($_COOKIE['id'])) {
     //Conectamos con la bD
-    $connexionDB = new ConexionDB();
+    $connexionDB = new ConexionDB(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_DB);
     $conn = $connexionDB->getConnexion();
 
     //Nos conectamos para obtener el id y la foto del usuario

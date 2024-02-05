@@ -16,10 +16,23 @@ function guardarMensaje($mensaje)
     $_SESSION['error'] = $mensaje;
 }
 
+function guardarMensajeC($mensaje)
+{
+    $_SESSION['correcto'] = $mensaje;
+}
+
 function imprimirMensaje()
 {
     if (isset($_SESSION['error'])) {
         echo '<div class="error" id="mensajeError">' . $_SESSION['error'] . '</div>';
         unset($_SESSION['error']);
+    }
+}
+
+function imprimirMensajeC()
+{
+    if (isset($_SESSION['correcto'])) {
+        echo '<div class="correcto" id="mensajeCorrecto">' . $_SESSION['correcto'] . '</div>';
+        unset($_SESSION['correcto']);
     }
 }
