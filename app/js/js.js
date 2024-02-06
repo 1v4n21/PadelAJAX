@@ -107,6 +107,7 @@ inputFecha.addEventListener('change', function () {
                             fila.style.fontWeight = "bold";
                             fila.removeEventListener('click', crearReserva);
                             fila.addEventListener('click', borrarReserva);
+                            fila.setAttribute("data-idReserva", reserva.idReserva);
                         } else {
                             // Si no es la reserva del usuario actual, dejamos el color en rojo
                             fila.style.background = "red";
@@ -127,11 +128,65 @@ inputFecha.addEventListener('change', function () {
         });
 });
 
-function borrarReserva(){
-    alert("Reserva Cancelada");
+function borrarReserva() {
+    // Mostrar el modal al hacer clic en el botón
+    document.getElementById('confirmModal').style.display = 'block';
+
+    //Id de la celda
+    var celda = this.id;
+
+    //Id de la reserva
+    var reserva = this.getAttribute('data-idReserva');
+
+    //Le añadimos el id de la celda y el id de la reserva al boton
+    document.getElementById('boton1').setAttribute("data-idCelda", celda);
+    document.getElementById('boton1').setAttribute("data-idReserva", reserva);
 }
 
-function crearReserva(){
-    alert("Reserva Creada");
+function cerrarModal() {
+    // Cerrar el modal al hacer clic en la "x" o en el área exterior
+    document.getElementById('confirmModal').style.display = 'none';
 }
+
+function confirmarEliminacion() {
+
+    //Obtenemos el id de la reserva que esta guardado en el boton como un data- y la id de celda
+    let idReserva = document.getElementById('boton1').getAttribute('data-idReserva');
+    let idCelda = document.getElementById('boton1').getAttribute('data-idCelda');
+    alert(idCelda+" "+idReserva);
+
+    //LLamamos al script del servidor que borra la tarea pasandole el idReserva
+    fetch('index.php?accion=borrarReserva&idReserva=' + idReserva)
+        .then(datos => datos.json())
+        .then(respuesta => {
+            if (respuesta.respuesta == 'ok') {
+                document.getElementById(idCelda).style.background = "white";
+                document.getElementById(idCelda).style.fontWeight = "normal";
+            } else {
+                alert("No se ha encontrado la tarea en el servidor");
+            }
+        });
+
+    cerrarModal();
+}
+
+function crearReserva() {
+    // Mostrar el modal al hacer clic en el botón
+    document.getElementById('confirmReservaModal').style.display = 'block';
+}
+
+function cerrarReservaModal() {
+    // Cerrar el modal al hacer clic en la "x" o en el área exterior
+    document.getElementById('confirmReservaModal').style.display = 'none';
+}
+
+function confirmarReserva() {
+    // Aquí puedes agregar la lógica para confirmar la reserva
+    // Puedes utilizar Fetch u otras llamadas a la API
+    // ...
+
+    // Cerrar el modal después de confirmar la reserva
+    cerrarReservaModal();
+}
+
 

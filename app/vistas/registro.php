@@ -49,7 +49,6 @@
         });
     </script>
 
-    <br><br><br>
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-9 mx-auto">

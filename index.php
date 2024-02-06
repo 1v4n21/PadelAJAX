@@ -55,6 +55,16 @@ $mapa = array(
         'metodo' => 'obtenerUsuario',
         'privada' => true
     ),
+    'borrarReserva' => array(
+        'controlador' => 'ControladorReservas',
+        'metodo' => 'borrarReserva',
+        'privada' => true
+    ),
+    'crearReserva' => array(
+        'controlador' => 'ControladorReservas',
+        'metodo' => 'crearReserva',
+        'privada' => true
+    ),
 );
 
 

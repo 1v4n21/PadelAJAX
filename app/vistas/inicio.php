@@ -8,9 +8,10 @@
     <link rel="icon" href="web/images/favicon.jpg" type="image/x-icon">
     <link rel="shortcut icon" href="web/images/favicon.jpg" type="image/x-icon">
 
-    <!-- bootstrap y font-awesome -->
+    <!-- Bootstrap 5 y Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>ManchaPadel-Inicio</title>
 
     <!-- Link jQuery -->
@@ -74,6 +75,38 @@
         .btn-danger:hover {
             background-color: #c82333;
             border-color: #bd2130;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 20% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -139,8 +172,28 @@
         </div>
     </div>
 
-    <!-- Scripts de Bootstrap (jQuery y Popper.js) -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <p>¿Estás seguro de que deseas eliminar la reserva?</p>
+            <button id="boton1" onclick="confirmarEliminacion()">Confirmar</button>
+        </div>
+    </div>
+
+    <div id="confirmReservaModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarReservaModal()">&times;</span>
+            <p>¿Estás seguro de que deseas confirmar la reserva?</p>
+            <button id="boton2" onclick="confirmarReserva()">Confirmar</button>
+        </div>
+    </div>
+
+    <!-- jQuery y Bootstrap 5 -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+
+    <!-- Otros scripts -->
     <script src="app/js/js.js" type="text/javascript"></script>
 </body>
 
