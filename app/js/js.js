@@ -22,9 +22,26 @@ function limpiarTabla() {
 function crearFila(id, hora, disponibilidad) {
     // Creamos una nueva fila con las celdas correspondientes
     let fila = document.createElement('tr');
-    fila.innerHTML = `<td id="${id}" class="text-center">${hora}</td><td id="${id}d" class="text-center">${disponibilidad}</td>`;
+    let celda1 = document.createElement('td');
+    celda1.id = id;
+    celda1.className = "text-center";
+    celda1.textContent = hora;
+
+    // Añadimos el evento click a la celda1
+    celda1.addEventListener('click', crearReserva);
+
+    let celda2 = document.createElement('td');
+    celda2.id = id + "d";
+    celda2.className = "text-center";
+    celda2.textContent = disponibilidad;
+
+    // Concatenamos las celdas a la fila
+    fila.appendChild(celda1);
+    fila.appendChild(celda2);
+
     return fila;
 }
+
 
 // Función para obtener tramos y reservas
 function obtenerTramosYReservas(fechaSeleccionada) {
@@ -88,9 +105,12 @@ inputFecha.addEventListener('change', function () {
                             // Si es la reserva del usuario actual, cambiamos el color a azul
                             fila.style.background = "blue";
                             fila.style.fontWeight = "bold";
+                            fila.removeEventListener('click', crearReserva);
+                            fila.addEventListener('click', borrarReserva);
                         } else {
                             // Si no es la reserva del usuario actual, dejamos el color en rojo
                             fila.style.background = "red";
+                            fila.removeEventListener('click', crearReserva);
                         }
 
                         filad.innerHTML = "NO";
@@ -106,4 +126,12 @@ inputFecha.addEventListener('change', function () {
             console.error('Error fetching data:', error);
         });
 });
+
+function borrarReserva(){
+    alert("Reserva Cancelada");
+}
+
+function crearReserva(){
+    alert("Reserva Creada");
+}
 

@@ -34,4 +34,8 @@ class ControladorReservas
             echo "No se ha proporcionado la fecha en la URL";
         }
     }
+
+    public function crearRerserva(){
+        
+    }
 }
