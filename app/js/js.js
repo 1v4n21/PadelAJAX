@@ -38,12 +38,10 @@ function obtenerTramosYReservas(fechaSeleccionada) {
         .then(data => {
             // Limpiamos la tabla y obtenemos un nuevo cuerpo de tabla
             let cuerpoTabla = limpiarTabla();
-            var i = 0;
 
             // Iteramos sobre los tramos y creamos filas para la tabla
             data.forEach(tramo => {
-                i += 1;
-                cuerpoTabla.appendChild(crearFila(i, tramo.hora, 'SI'));
+                cuerpoTabla.appendChild(crearFila(tramo.id, tramo.hora, 'SI'));
             });
 
             // Agregamos el cuerpo de tabla a la tabla
@@ -72,7 +70,6 @@ inputFecha.addEventListener('change', function () {
         })
         .then(data => {
             // Almacenamos la ID del usuario en una variable
-            console.log(data);
             const idUsuario = data.idUsuario;
 
             // Obtenemos la fecha seleccionada
@@ -90,6 +87,7 @@ inputFecha.addEventListener('change', function () {
                         if (idUsuario === reserva.idUsuario) {
                             // Si es la reserva del usuario actual, cambiamos el color a azul
                             fila.style.background = "blue";
+                            fila.style.fontWeight = "bold";
                         } else {
                             // Si no es la reserva del usuario actual, dejamos el color en rojo
                             fila.style.background = "red";

@@ -8,7 +8,7 @@ class UsuariosDAO
         $this->conn = $conn;
     }
 
-    public function getByEmail($email): ?Usuario
+    public function getByEmail($email): Usuario|null
     {
         if (!$stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE email = ?")) {
             echo "Error en la SQL: " . $this->conn->error;
@@ -28,7 +28,7 @@ class UsuariosDAO
 
     public function getById($id)
     {
-        if (!$stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE idUsuario = ?")) {
+        if (!$stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE id = ?")) {
             echo "Error en la SQL: " . $this->conn->error;
         }
 

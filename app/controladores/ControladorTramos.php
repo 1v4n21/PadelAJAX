@@ -26,7 +26,6 @@ class ControladorTramos
                 'hora' => $tramo->getHora(),
                 'id' => $tramo->getId(),
             ];
-            echo $tramo->getId();
         }
 
         // Imprimir el array como JSON

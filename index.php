@@ -71,7 +71,7 @@ if (isset($_GET['accion'])) {
 } elseif (Sesion::existeSesion()) {
     $accion = 'inicio';   // Acción por defecto
 } else {
-    $accion = 'login';
+    $accion = 'login';    //Acción por defecto
 }
 
 
