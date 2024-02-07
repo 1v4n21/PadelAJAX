@@ -81,14 +81,15 @@ class ReservasDAO
 
     public function insert(Reserva $reserva): int|bool
     {
-        if (!$stmt = $this->conn->prepare("INSERT INTO reservas (idUsuario, idTramo) VALUES (?,?)")) {
+        if (!$stmt = $this->conn->prepare("INSERT INTO reservas (idUsuario, idTramo, fecha) VALUES (?,?,?)")) {
             die("Error al preparar la consulta insert: " . $this->conn->error);
         }
 
         $idUsuario = $reserva->getIdUsuario();
         $idTramo = $reserva->getIdTramo();
+        $fecha = $reserva->getFecha();
 
-        $stmt->bind_param('ss', $idUsuario, $idTramo);
+        $stmt->bind_param('sss', $idUsuario, $idTramo, $fecha);
 
         if ($stmt->execute()) {
             return $stmt->insert_id;

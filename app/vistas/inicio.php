@@ -176,7 +176,7 @@
         <div class="modal-content">
             <span class="close" onclick="cerrarModal()">&times;</span>
             <p>¿Estás seguro de que deseas eliminar la reserva?</p>
-            <button id="boton1" onclick="confirmarEliminacion()">Confirmar</button>
+            <button id="botonBorrar" onclick="confirmarEliminacion()">Confirmar</button>
         </div>
     </div>
 
@@ -184,14 +184,13 @@
         <div class="modal-content">
             <span class="close" onclick="cerrarReservaModal()">&times;</span>
             <p>¿Estás seguro de que deseas confirmar la reserva?</p>
-            <button id="boton2" onclick="confirmarReserva()">Confirmar</button>
+            <button id="botonCrear" onclick="confirmarReserva()">Confirmar</button>
         </div>
     </div>
 
     <!-- jQuery y Bootstrap 5 -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"></script>
 
     <!-- Otros scripts -->
     <script src="app/js/js.js" type="text/javascript"></script>

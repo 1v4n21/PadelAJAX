@@ -35,7 +35,7 @@ class ControladorReservas
         }
     }
 
-    public function crearRerserva()
+    public function crearReserva()
     {
 
         if (isset($_GET['idUsuario']) && isset($_GET['idTramo']) && isset($_GET['fecha'])) {
@@ -57,8 +57,12 @@ class ControladorReservas
             //Validamos que se crea la reserva correctamente
             if ($reservasDAO->insert($reserva)) {
                 print json_encode(['respuesta' => 'ok']);
+                //Mensaje de exito
+                guardarMensajeC("Reserva creada con éxito");
             } else {
                 print json_encode(['respuesta' => 'error', 'mensaje' => 'Error al realizar la reserva']);
+                //Mensaje de error
+                guardarMensajeC("Error al crear la reserva");
             }
 
             //Tiempo de espera
@@ -81,8 +85,12 @@ class ControladorReservas
             //Validamos que se borra la reserva correctamente
             if ($reservasDAO->delete($idReserva)) {
                 print json_encode(['respuesta' => 'ok']);
+                //Mensaje de exito
+                guardarMensajeC("Reserva cancelada con éxito");
             } else {
                 print json_encode(['respuesta' => 'error', 'mensaje' => 'Error al borrar la reserva']);
+                //Mensaje de error
+                guardarMensajeC("Error al cancelar la reserva");
             }
 
             //Tiempo de espera

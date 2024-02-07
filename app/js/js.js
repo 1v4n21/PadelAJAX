@@ -87,10 +87,14 @@ inputFecha.addEventListener('change', function () {
         })
         .then(data => {
             // Almacenamos la ID del usuario en una variable
-            const idUsuario = data.idUsuario;
+            var idUsuario = data.idUsuario;
+            //Añadimos el idUsuario al boton de crear
+            document.getElementById('botonCrear').setAttribute("data-idUsuario", idUsuario);
 
             // Obtenemos la fecha seleccionada
             var fechaSeleccionada = inputFecha.value;
+            //Añadimos la fecha al boton de crear
+            document.getElementById('botonCrear').setAttribute("data-fecha", fechaSeleccionada);
 
             // Llamamos a la función para obtener tramos y reservas
             obtenerTramosYReservas(fechaSeleccionada, idUsuario)
@@ -139,8 +143,8 @@ function borrarReserva() {
     var reserva = this.getAttribute('data-idReserva');
 
     //Le añadimos el id de la celda y el id de la reserva al boton
-    document.getElementById('boton1').setAttribute("data-idCelda", celda);
-    document.getElementById('boton1').setAttribute("data-idReserva", reserva);
+    document.getElementById('botonBorrar').setAttribute("data-idCelda", celda);
+    document.getElementById('botonBorrar').setAttribute("data-idReserva", reserva);
 }
 
 function cerrarModal() {
@@ -151,12 +155,11 @@ function cerrarModal() {
 function confirmarEliminacion() {
 
     //Obtenemos el id de la reserva que esta guardado en el boton como un data- y la id de celda
-    let idReserva = document.getElementById('boton1').getAttribute('data-idReserva');
-    let idCelda = document.getElementById('boton1').getAttribute('data-idCelda');
-    alert(idCelda+" "+idReserva);
+    let idReserva = document.getElementById('botonBorrar').getAttribute('data-idReserva');
+    let idCelda = document.getElementById('botonBorrar').getAttribute('data-idCelda');
 
-    //LLamamos al script del servidor que borra la tarea pasandole el idReserva
-    fetch('index.php?accion=borrarReserva&idReserva=' + idReserva)
+    //LLamamos al script del servidor que borra la reserva pasandole el idReserva
+    fetch(`index.php?accion=borrarReserva&idReserva=${idReserva}`)
         .then(datos => datos.json())
         .then(respuesta => {
             if (respuesta.respuesta == 'ok') {
@@ -173,6 +176,15 @@ function confirmarEliminacion() {
 function crearReserva() {
     // Mostrar el modal al hacer clic en el botón
     document.getElementById('confirmReservaModal').style.display = 'block';
+
+    //Id de la celda
+    var celda = this.id;
+
+    //Id de la reserva
+    var reserva = this.getAttribute('data-idReserva');
+
+    //Le añadimos el id de la celda y el id de la reserva al boton
+    document.getElementById('botonCrear').setAttribute("data-idCelda", celda);
 }
 
 function cerrarReservaModal() {
@@ -181,9 +193,22 @@ function cerrarReservaModal() {
 }
 
 function confirmarReserva() {
-    // Aquí puedes agregar la lógica para confirmar la reserva
-    // Puedes utilizar Fetch u otras llamadas a la API
-    // ...
+    //Obtenemos el id de la reserva que esta guardado en el boton como un data- y la id de celda
+    let fecha = document.getElementById('botonCrear').getAttribute('data-fecha');
+    let idUsuario = document.getElementById('botonCrear').getAttribute('data-idUsuario');
+    let idCelda = document.getElementById('botonCrear').getAttribute('data-idCelda');
+
+    //LLamamos al script del servidor que crea la reserva pasandole el idReserva
+    fetch(`index.php?accion=crearReserva&fecha=${fecha}&idUsuario=${idUsuario}&idTramo=${idCelda}`)
+        .then(datos => datos.json())
+        .then(respuesta => {
+            if (respuesta.respuesta == 'ok') {
+                document.getElementById(idCelda).style.background = "blue";
+                document.getElementById(idCelda).style.fontWeight = "bold";
+            } else {
+                alert("No se ha encontrado la tarea en el servidor");
+            }
+        });
 
     // Cerrar el modal después de confirmar la reserva
     cerrarReservaModal();
