@@ -142,6 +142,9 @@ function borrarReserva() {
     //Id de la reserva
     var reserva = this.getAttribute('data-idReserva');
 
+    //Quitamos la id de la reserva
+    this.removeAttribute('data-idReserva');
+
     //Le añadimos el id de la celda y el id de la reserva al boton
     document.getElementById('botonBorrar').setAttribute("data-idCelda", celda);
     document.getElementById('botonBorrar').setAttribute("data-idReserva", reserva);
@@ -165,6 +168,11 @@ function confirmarEliminacion() {
             if (respuesta.respuesta == 'ok') {
                 document.getElementById(idCelda).style.background = "white";
                 document.getElementById(idCelda).style.fontWeight = "normal";
+
+                //Le añadimos el evento de crear reserva
+                document.getElementById(idCelda).addEventListener('click', crearReserva);
+                //Le borramos el evento de eliminar reserva
+                document.getElementById(idCelda).removeEventListener('click', borrarReserva);
             } else {
                 alert("No se ha encontrado la tarea en el servidor");
             }
@@ -205,6 +213,11 @@ function confirmarReserva() {
             if (respuesta.respuesta == 'ok') {
                 document.getElementById(idCelda).style.background = "blue";
                 document.getElementById(idCelda).style.fontWeight = "bold";
+
+                //Le eliminamos el evento de crear reserva
+                document.getElementById(idCelda).removeEventListener('click', crearReserva);
+                //Le añadimos el evento de eliminar reserva
+                document.getElementById(idCelda).addEventListener('click', borrarReserva);
             } else {
                 alert("No se ha encontrado la tarea en el servidor");
             }

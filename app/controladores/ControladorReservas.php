@@ -55,8 +55,8 @@ class ControladorReservas
             $reserva->setFecha($fecha);
 
             //Validamos que se crea la reserva correctamente
-            if ($reservasDAO->insert($reserva)) {
-                print json_encode(['respuesta' => 'ok']);
+            if ($idReserva = $reservasDAO->insert($reserva)) {
+                print json_encode(['respuesta' => 'ok', 'idReserva' => $idReserva]);
                 //Mensaje de exito
                 guardarMensajeC("Reserva creada con éxito");
             } else {
