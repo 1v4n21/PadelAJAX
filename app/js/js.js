@@ -86,6 +86,9 @@ inputFecha.addEventListener('change', function () {
             return response.json();
         })
         .then(data => {
+            //Mostrar preloader
+            $("#overlay").fadeIn();
+
             // Almacenamos la ID del usuario en una variable
             var idUsuario = data.idUsuario;
             //Añadimos el idUsuario al boton de crear
@@ -120,6 +123,9 @@ inputFecha.addEventListener('change', function () {
 
                         filad.innerHTML = "NO";
                     });
+
+                    //Ocultar preloader
+                    $("#overlay").fadeOut();
                 })
                 .catch(error => {
                     // Manejamos errores en la consola
@@ -153,6 +159,8 @@ function cerrarModal() {
 }
 
 function confirmarEliminacion() {
+    //Mostrar el preloader
+    $("#overlay").fadeIn();
 
     //Obtenemos el id de la reserva que esta guardado en el boton como un data- y la id de celda
     let idReserva = document.getElementById('botonBorrar').getAttribute('data-idReserva');
@@ -190,6 +198,9 @@ function confirmarEliminacion() {
                 $(document).ready(function () {
                     $(".correcto").fadeIn().delay(5000).fadeOut();
                 });
+
+                //Ocultar el preloader
+                $("#overlay").fadeOut();
             } else {
                 alert("No se ha encontrado la tarea en el servidor");
             }
