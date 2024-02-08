@@ -108,6 +108,32 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #preloader {
+            text-align: center;
+        }
+
+        #preloader img {
+            max-width: 100%;
+            /* La imagen se ajustará al ancho del contenedor */
+            max-height: 100vh;
+            /* La imagen se ajustará a la altura de la ventana */
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -134,7 +160,7 @@
         });
     </script>
 
-    <div class="container-fluid text-center bg-success py-3 d-flex flex-column align-items-center">
+    <div id="cabecera" class="container-fluid text-center bg-success py-3 d-flex flex-column align-items-center">
         <div class="d-flex align-items-center mb-3">
             <h1 class="text-light mb-0 me-3">Mancha Padel</h1>
             <img src="web/images/favicon.jpg" alt="Icono" width="70" height="70">
@@ -172,6 +198,7 @@
         </div>
     </div>
 
+    <!-- Modal de cancelacion de reserva -->
     <div id="confirmModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="cerrarModal()">&times;</span>
@@ -180,6 +207,7 @@
         </div>
     </div>
 
+    <!-- Modal de creacion de reserva -->
     <div id="confirmReservaModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="cerrarReservaModal()">&times;</span>
@@ -187,6 +215,15 @@
             <button id="botonCrear" onclick="confirmarReserva()">Confirmar</button>
         </div>
     </div>
+
+    <!-- Modal de preloader -->
+    <div id="overlay" onclick="ocultarPreloader()">
+        <div id="preloader">
+            <img src="web/images/preloader.gif" alt="Preloader">
+        </div>
+    </div>
+
+
 
     <!-- jQuery y Bootstrap 5 -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

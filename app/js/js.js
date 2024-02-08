@@ -177,6 +177,19 @@ function confirmarEliminacion() {
                 document.getElementById(idCelda).addEventListener('click', crearReserva);
                 //Le borramos el evento de eliminar reserva
                 document.getElementById(idCelda).removeEventListener('click', borrarReserva);
+
+                //Mensaje de exito
+                mensaje = document.createElement('div');
+                mensaje.id = "mensajeCorrecto"
+                mensaje.classList.add("correcto");
+                mensaje.innerHTML = "Reserva cancelada con éxito";
+
+                document.body.appendChild(mensaje);
+
+                // Muestra el mensaje de correcto al cargar la página
+                $(document).ready(function () {
+                    $(".correcto").fadeIn().delay(5000).fadeOut();
+                });
             } else {
                 alert("No se ha encontrado la tarea en el servidor");
             }
@@ -202,6 +215,9 @@ function cerrarReservaModal() {
 }
 
 function confirmarReserva() {
+    //Muestro el preloader
+    $("#overlay").fadeIn();
+
     //Obtenemos el id de la reserva que esta guardado en el boton como un data- y la id de celda
     let fecha = document.getElementById('botonCrear').getAttribute('data-fecha');
     let idUsuario = document.getElementById('botonCrear').getAttribute('data-idUsuario');
@@ -226,6 +242,22 @@ function confirmarReserva() {
                 document.getElementById(idCelda).removeEventListener('click', crearReserva);
                 //Le añadimos el evento de eliminar reserva
                 document.getElementById(idCelda).addEventListener('click', borrarReserva);
+
+                //Mensaje de exito
+                mensaje = document.createElement('div');
+                mensaje.id = "mensajeCorrecto"
+                mensaje.classList.add("correcto");
+                mensaje.innerHTML = "Reserva realizada con éxito";
+
+                document.body.appendChild(mensaje);
+
+                // Muestra el mensaje de correcto al cargar la página
+                $(document).ready(function () {
+                    $(".correcto").fadeIn().delay(5000).fadeOut();
+                });
+
+                //Esconder preloader
+                $("#overlay").fadeOut();
             } else {
                 alert("No se ha encontrado la tarea en el servidor");
             }
