@@ -142,9 +142,6 @@ function borrarReserva() {
     //Id de la reserva
     var reserva = this.getAttribute('data-idReserva');
 
-    //Quitamos la id de la reserva
-    this.removeAttribute('data-idReserva');
-
     //Le añadimos el id de la celda y el id de la reserva al boton
     document.getElementById('botonBorrar').setAttribute("data-idCelda", celda);
     document.getElementById('botonBorrar').setAttribute("data-idReserva", reserva);
@@ -166,8 +163,15 @@ function confirmarEliminacion() {
         .then(datos => datos.json())
         .then(respuesta => {
             if (respuesta.respuesta == 'ok') {
+                //Cambiar las celdas de color
                 document.getElementById(idCelda).style.background = "white";
                 document.getElementById(idCelda).style.fontWeight = "normal";
+
+                //Añadimos SI en disponibilidad
+                document.getElementById(idCelda + "d").innerHTML = "SI";
+
+                //Quitamos la id de la reserva
+                document.getElementById(idCelda).removeAttribute('data-idReserva');
 
                 //Le añadimos el evento de crear reserva
                 document.getElementById(idCelda).addEventListener('click', crearReserva);
@@ -187,9 +191,6 @@ function crearReserva() {
 
     //Id de la celda
     var celda = this.id;
-
-    //Id de la reserva
-    var reserva = this.getAttribute('data-idReserva');
 
     //Le añadimos el id de la celda y el id de la reserva al boton
     document.getElementById('botonCrear').setAttribute("data-idCelda", celda);
@@ -211,8 +212,15 @@ function confirmarReserva() {
         .then(datos => datos.json())
         .then(respuesta => {
             if (respuesta.respuesta == 'ok') {
+                //Cambiar las celdas de color
                 document.getElementById(idCelda).style.background = "blue";
                 document.getElementById(idCelda).style.fontWeight = "bold";
+
+                //Añadir NO en disponibilidad
+                document.getElementById(idCelda + "d").innerHTML = "NO";
+
+                //Añadir el idReserva a la celda
+                document.getElementById(idCelda).setAttribute("data-idReserva", respuesta.idReserva);
 
                 //Le eliminamos el evento de crear reserva
                 document.getElementById(idCelda).removeEventListener('click', crearReserva);
