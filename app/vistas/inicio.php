@@ -173,7 +173,7 @@
 
     <div class="container mt-5">
 
-        <div class="text-center bg-light p-3 w-50 mx-auto border rounded">
+        <div class="text-center bg-light p-3 w-75 mx-auto border rounded">
             <h1 class="text-dark d-inline-block">RESERVA DE PISTA</h1>
         </div>
 
