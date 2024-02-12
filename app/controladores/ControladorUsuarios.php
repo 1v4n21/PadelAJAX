@@ -100,8 +100,9 @@ class ControladorUsuarios
                 $passwordCifrado = password_hash($password, PASSWORD_DEFAULT);
                 $usuario->setPassword($passwordCifrado);
 
-                if ($usuariosDAO->insert($usuario)) {
+                if ($usuario->setId($usuariosDAO->insert($usuario))) {
                     // Iniciar sesión con el nuevo usuario
+                    
                     Sesion::iniciarSesion($usuario);
 
                     header("location: index.php");
